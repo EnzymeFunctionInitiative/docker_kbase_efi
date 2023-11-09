@@ -2,8 +2,8 @@ FROM kbase/sdkpython:3.8.0
 
 ENV PIP_PROGRESS_BAR=off
 RUN apt-get -y update
-RUN apt-get -y install libpng-dev libargtable2-dev zlib1g-dev libgd-dev libfreetype-dev libmariadb-dev-compat
-RUN apt-get -y install cpanminus unzip git r-base dos2unix
+RUN apt-get -y install libpng-dev libargtable2-dev zlib1g-dev libgd-dev libfreetype-dev libmariadb-dev-compat libreadline-dev
+RUN apt-get -y install cpanminus unzip git r-base dos2unix bc
 
 RUN pip install --upgrade pip
 RUN pip install weblogo pytest-subtests parameterized
@@ -99,8 +99,6 @@ RUN rm -rf sb_data sb_code
 
 RUN mkdir -p /data/efi/0.1
 RUN mkdir -p /data/job
-
-ARG RESETCONFIG=false
 
 RUN apt-get install -y wget
 RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
